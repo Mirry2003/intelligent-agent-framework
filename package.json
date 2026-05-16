@@ -1,5 +1,6 @@
 {
   "name": "intelligent-agent-framework",
+  "packageManager": "pnpm@10.33.2",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
