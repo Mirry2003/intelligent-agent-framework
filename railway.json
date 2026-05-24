@@ -3,7 +3,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "pnpm start",
+    "startCommand": "npx tsx server/index.ts",
     "restartPolicyType": "ON_FAILURE"
   }
 }
