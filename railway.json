@@ -3,7 +3,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "pnpm dev:server",
+    "startCommand": "pnpm start",
     "restartPolicyType": "ON_FAILURE"
   }
 }
