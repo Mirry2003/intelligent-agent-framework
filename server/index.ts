@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { appRouter } from "./router";
 import dotenv from "dotenv";
@@ -27,6 +28,14 @@ app.get("/health", (req, res) => {
     message: "IAF Server is running" 
   });
 });
+
+// Serve frontend in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(process.cwd(), "dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "dist", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
