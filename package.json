@@ -8,7 +8,7 @@
   "dev:server": "tsx watch server/index.ts",
   "dev:client": "vite --config client/vite.config.ts",
   "dev": "concurrently \"pnpm dev:server\" \"pnpm dev:client\"",
-  "build": "vite build --config client/vite.config.ts",
+  "build": "vite build --config client/vite.config.ts --outDir ../dist",
   "test": "vitest"
 },
   "keywords": [],
