@@ -12,8 +12,12 @@ const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
       url: typeof window !== "undefined" && window.location.hostname !== "localhost"
-  ? "/trpc"
-  : "http://localhost:3001/trpc",
+        ? "/trpc"
+        : "http://localhost:3001/trpc",
+      headers() {
+        const token = localStorage.getItem("token");
+        return token ? { Authorization: `Bearer ${token}` } : {};
+      },
     }),
   ],
 });

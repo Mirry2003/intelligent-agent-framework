@@ -1,5 +1,15 @@
 import { int, varchar, text, timestamp, mysqlEnum, mysqlTable } from "drizzle-orm/mysql-core";
+// Table: Users
+export const users = mysqlTable("users", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 255 }).notNull(),
+  password: varchar("password", { length: 255 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  role: mysqlEnum("role", ["admin", "user"]).default("user"),
+  createdAt: timestamp("createdAt").defaultNow(),
+});
 
+export type User = typeof users.$inferSelect;
 // Table 1: Store information about each agent
 export const agents = mysqlTable("agents", {
   id: int("id").autoincrement().primaryKey(),
