@@ -7,6 +7,9 @@ import LegacySystems from "./pages/LegacySystems";
 import ActivityFeed from "./pages/ActivityFeed";
 import Performance from "./pages/Performance";
 import Login from "./pages/Login";
+import Alerts from "./pages/Alerts";
+// ...
+<Route path="/alerts" component={Alerts} />
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -80,6 +83,9 @@ function App() {
           </a>
           <a href="/activity" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
             <span style={{ color: "#06b6d4" }}>∿</span> Activity Feed
+          </a>
+          <a href="/alerts" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
+            <span style={{ color: "#ef4444" }}>🚨</span> Alerts
           </a>
           <a href="/performance" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
             <span style={{ color: "#06b6d4" }}>◷</span> Performance

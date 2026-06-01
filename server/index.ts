@@ -6,6 +6,8 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { appRouter } from "./router";
 import { loginUser, registerUser, verifyToken } from "./auth";
 import dotenv from "dotenv";
+import { checkAndSendAlerts } from "./alerts";
+import { generatePerformanceReport } from "./reports";
 
 dotenv.config();
 
@@ -57,7 +59,25 @@ app.get("/api/me", (req, res) => {
   if (!user) return res.status(401).json({ error: "Invalid token" });
   res.json({ user });
 });
-
+// Alert route
+app.post("/api/alerts/check", async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: "Email required" });
+    await checkAndSendAlerts(email);
+    res.json({ success: true, message: "Alerts checked and sent!" });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+// Report route
+app.get("/api/reports/performance", async (req, res) => {
+  try {
+    await generatePerformanceReport(res);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
 // tRPC middleware
 app.use(
   "/trpc",
