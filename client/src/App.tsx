@@ -6,7 +6,7 @@ import MLModels from "./pages/MLModels";
 import LegacySystems from "./pages/LegacySystems";
 import ActivityFeed from "./pages/ActivityFeed";
 import Performance from "./pages/Performance";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Alerts from "./pages/Alerts";
 // ...
 <Route path="/alerts" component={Alerts} />
