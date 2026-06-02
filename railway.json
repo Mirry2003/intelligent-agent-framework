@@ -7,7 +7,8 @@
         "install": {
           "cmds": [
             "npm install -g pnpm@9.15.9",
-            "export PATH=\"/root/.nvm/versions/node/v20.19.5/bin:$PATH\"",
+            "node -e \"console.log(require('child_process').execSync('which pnpm || echo /root/.nvm/versions/node/v20.19.5/bin/pnpm').toString())\"",
+            "ln -sf $(which pnpm || echo /root/.nvm/versions/node/v20.19.5/bin/pnpm) /usr/local/bin/pnpm",
             "pnpm i --frozen-lockfile --ignore-scripts"
           ]
         }
