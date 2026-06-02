@@ -124,18 +124,19 @@ export default function Performance() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Download Report Button */}
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <a href="/api/reports/performance" download="IAF-Report.pdf"
+          style={{
+            padding: "10px 20px", borderRadius: "8px",
+            background: "#8b5cf6", color: "white",
+            textDecoration: "none", fontSize: "13px",
+            fontWeight: "500", display: "inline-block"
+          }}>
+          📄 Download PDF Report
+        </a>
+      </div>
     </div>
-    {/* Download Report Button */}
-<div style={{ display: "flex", justifyContent: "flex-end" }}>
-  <a href="/api/reports/performance" download="IAF-Report.pdf"
-    style={{
-      padding: "10px 20px", borderRadius: "8px",
-      background: "#8b5cf6", color: "white",
-      textDecoration: "none", fontSize: "13px",
-      fontWeight: "500", display: "inline-block"
-    }}>
-    📄 Download PDF Report
-  </a>
-</div>
   );
 }
