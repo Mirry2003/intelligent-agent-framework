@@ -1,12 +1,16 @@
 {
   "build": {
     "builder": "NIXPACKS",
+    "nixpacksVersion": "1.41.0",
     "config": {
-      "install": {
-        "cmds": [
-          "corepack enable pnpm",
-          "pnpm i --frozen-lockfile --ignore-scripts"
-        ]
+      "phases": {
+        "install": {
+          "cmds": [
+            "npm install -g pnpm@9.15.9",
+            "export PATH=\"/root/.nvm/versions/node/v20.19.5/bin:$PATH\"",
+            "pnpm i --frozen-lockfile --ignore-scripts"
+          ]
+        }
       }
     }
   },
