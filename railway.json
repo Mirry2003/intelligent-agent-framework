@@ -1,6 +1,14 @@
 {
   "build": {
-    "builder": "NIXPACKS"
+    "builder": "NIXPACKS",
+    "config": {
+      "install": {
+        "cmds": [
+          "corepack enable pnpm",
+          "pnpm i --frozen-lockfile --ignore-scripts"
+        ]
+      }
+    }
   },
   "deploy": {
     "startCommand": "pnpm start",
