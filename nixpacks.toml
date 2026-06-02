@@ -1,11 +1,6 @@
-[phases.setup]
-nixPkgs = ["nodejs_20"]
-
 [phases.install]
-cmds = ["npm install -g pnpm@9.15.9", "pnpm i --frozen-lockfile --ignore-scripts"]
-
-[phases.build]
-cmds = ["pnpm run build"]
-
-[start]
-cmd = "pnpm start"
+cmds = [
+  "npm install -g pnpm@9.15.9",
+  "export PATH=$(npm bin -g):$PATH",
+  "pnpm i --frozen-lockfile --ignore-scripts"
+]
