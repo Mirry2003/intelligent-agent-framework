@@ -8,8 +8,6 @@ import ActivityFeed from "./pages/ActivityFeed";
 import Performance from "./pages/Performance";
 import Login from "./pages/login";
 import Alerts from "./pages/Alerts";
-// ...
-<Route path="/alerts" component={Alerts} />
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -93,40 +91,40 @@ function App() {
         </nav>
 
         {/* User info + logout */}
-<div style={{ borderTop: "1px solid #1e3a5f", paddingTop: "12px", marginTop: "12px" }}>
-  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-    <div style={{
-      width: "28px", height: "28px", borderRadius: "50%",
-      background: user.role === "admin" ? "#06b6d4" : "#8b5cf6",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      color: "white", fontSize: "12px", fontWeight: "bold"
-    }}>
-      {user.role === "admin" ? "👑" : user.name?.charAt(0).toUpperCase()}
-    </div>
-    <div>
-      <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-        <p style={{ color: "white", fontSize: "12px", fontWeight: "500", margin: 0 }}>
-          {user.name}
-        </p>
-        {user.role === "admin" && (
-          <span style={{
-            fontSize: "9px", padding: "1px 5px", borderRadius: "999px",
-            background: "#06b6d420", color: "#06b6d4", border: "1px solid #06b6d430"
-          }}>ADMIN</span>
-        )}
+        <div style={{ borderTop: "1px solid #1e3a5f", paddingTop: "12px", marginTop: "12px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+            <div style={{
+              width: "28px", height: "28px", borderRadius: "50%",
+              background: user.role === "admin" ? "#06b6d4" : "#8b5cf6",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: "white", fontSize: "12px", fontWeight: "bold"
+            }}>
+              {user.role === "admin" ? "👑" : user.name?.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                <p style={{ color: "white", fontSize: "12px", fontWeight: "500", margin: 0 }}>
+                  {user.name}
+                </p>
+                {user.role === "admin" && (
+                  <span style={{
+                    fontSize: "9px", padding: "1px 5px", borderRadius: "999px",
+                    background: "#06b6d420", color: "#06b6d4", border: "1px solid #06b6d430"
+                  }}>ADMIN</span>
+                )}
+              </div>
+              <p style={{ color: "#6b7280", fontSize: "11px", margin: 0 }}>{user.email}</p>
+            </div>
+          </div>
+          <button onClick={handleLogout} style={{
+            width: "100%", padding: "6px", borderRadius: "6px",
+            border: "1px solid #ef444430", background: "#ef444415",
+            color: "#ef4444", cursor: "pointer", fontSize: "12px"
+          }}>
+            Sign Out
+          </button>
+        </div>
       </div>
-      <p style={{ color: "#6b7280", fontSize: "11px", margin: 0 }}>{user.email}</p>
-    </div>
-  </div>
-  <button onClick={handleLogout} style={{
-    width: "100%", padding: "6px", borderRadius: "6px",
-    border: "1px solid #ef444430", background: "#ef444415",
-    color: "#ef4444", cursor: "pointer", fontSize: "12px"
-  }}>
-    Sign Out
-  </button>
-</div>
-            
 
       {/* Main Content */}
       <div style={{ flex: 1, height: "100vh", overflowY: "auto", background: "#0a0f1e" }}>
@@ -136,6 +134,7 @@ function App() {
           <Route path="/models" component={MLModels} />
           <Route path="/systems" component={LegacySystems} />
           <Route path="/activity" component={ActivityFeed} />
+          <Route path="/alerts" component={Alerts} />
           <Route path="/performance" component={Performance} />
         </Switch>
       </div>
