@@ -122,3 +122,12 @@ export async function upsertSystemConfig(data: Omit<schema.SystemConfig, "id" | 
     set: { value: data.value, description: data.description },
   });
 }
+export async function getUserByEmail(email: string) {
+  return await db.query.users.findFirst({
+    where: eq(schema.users.email, email),
+  });
+}
+
+export async function getAllUsers() {
+  return await db.query.users.findMany();
+}

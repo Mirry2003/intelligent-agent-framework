@@ -8,6 +8,7 @@ import { loginUser, registerUser, verifyToken } from "./auth";
 import dotenv from "dotenv";
 import { checkAndSendAlerts } from "./alerts";
 import { generatePerformanceReport } from "./reports";
+import { seedAdminUser } from "./seed";
 
 dotenv.config();
 
@@ -96,6 +97,8 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(process.cwd(), "dist", "index.html"));
   });
 }
+// Seed admin user on startup
+seedAdminUser();
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
