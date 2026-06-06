@@ -15,35 +15,39 @@ export default function Login({ onLogin }: LoginProps) {
   const [loading, setLoading] = useState(false);
 
   const handleAdminLogin = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          email: "admin@iaf.com",
-          password: "Admin@2026",
-        }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      onLogin(data.user, data.token);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  setError("");
+  try {
+    const response = await fetch("http://localhost:3001/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        email: "admin@iaf.com",
+        password: "Admin@2026",
+      }),
+    });
+
+    const text = await response.text();
+    const data = JSON.parse(text);
+    if (!response.ok) throw new Error(data.error);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+    onLogin(data.user, data.token);
+  } catch (err: any) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleSubmit = async () => {
     setLoading(true);
     setError("");
     try {
-      const url = isRegister ? "/api/register" : "/api/login";
+      const url = isRegister 
+        ? "http://localhost:3001/api/register" 
+        : "http://localhost:3001/api/login";
       const body = isRegister
         ? { email, password, name }
         : { email, password };

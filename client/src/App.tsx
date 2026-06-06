@@ -6,8 +6,8 @@ import MLModels from "./pages/MLModels";
 import LegacySystems from "./pages/LegacySystems";
 import ActivityFeed from "./pages/ActivityFeed";
 import Performance from "./pages/Performance";
-import Login from "./pages/login";
 import Alerts from "./pages/Alerts";
+import Login from "./pages/Login";
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -47,12 +47,20 @@ function App() {
 
   return (
     <div style={{ display: "flex", height: "100vh", background: "#0a0f1e", overflow: "hidden" }}>
+
       {/* Sidebar */}
       <div style={{
-        width: "220px", minWidth: "220px", height: "100vh",
-        background: "#070d1a", borderRight: "1px solid #1e3a5f",
-        display: "flex", flexDirection: "column", padding: "16px", overflowY: "auto"
+        width: "220px",
+        minWidth: "220px",
+        height: "100vh",
+        background: "#070d1a",
+        borderRight: "1px solid #1e3a5f",
+        display: "flex",
+        flexDirection: "column",
+        padding: "16px",
+        overflowY: "auto"
       }}>
+        {/* Logo */}
         <div style={{ marginBottom: "24px", padding: "8px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ color: "#06b6d4", fontSize: "18px" }}>⚡</span>
@@ -63,6 +71,7 @@ function App() {
           </p>
         </div>
 
+        {/* Navigation */}
         <nav style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1 }}>
           <a href="/" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
             <span style={{ color: "#06b6d4" }}>▦</span> Overview
@@ -82,11 +91,11 @@ function App() {
           <a href="/activity" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
             <span style={{ color: "#06b6d4" }}>∿</span> Activity Feed
           </a>
-          <a href="/alerts" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
-            <span style={{ color: "#ef4444" }}>🚨</span> Alerts
-          </a>
           <a href="/performance" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
             <span style={{ color: "#06b6d4" }}>◷</span> Performance
+          </a>
+          <a href="/alerts" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "8px", textDecoration: "none", color: "#9ca3af", fontSize: "13px" }}>
+            <span style={{ color: "#ef4444" }}>🚨</span> Alerts
           </a>
         </nav>
 
@@ -127,17 +136,23 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <div style={{ flex: 1, height: "100vh", overflowY: "auto", background: "#0a0f1e" }}>
+      <div style={{
+        flex: 1,
+        height: "100vh",
+        overflowY: "auto",
+        background: "#0a0f1e"
+      }}>
         <Switch>
           <Route path="/" component={Overview} />
           <Route path="/agents" component={AgentsDashboard} />
           <Route path="/models" component={MLModels} />
           <Route path="/systems" component={LegacySystems} />
           <Route path="/activity" component={ActivityFeed} />
-          <Route path="/alerts" component={Alerts} />
           <Route path="/performance" component={Performance} />
+          <Route path="/alerts" component={Alerts} />
         </Switch>
       </div>
+
     </div>
   );
 }
