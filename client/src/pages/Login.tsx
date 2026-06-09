@@ -18,16 +18,15 @@ export default function Login({ onLogin }: LoginProps) {
   setLoading(true);
   setError("");
   try {
-    const response = await fetch("http://localhost:3001/api/login", {
+    const baseUrl = window.location.hostname === "localhost" 
+      ? "http://localhost:3001" 
+      : "";
+    const response = await fetch(`${baseUrl}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({
-        email: "admin@iaf.com",
-        password: "Admin@2026",
-      }),
+      body: JSON.stringify({ email: "admin@iaf.com", password: "Admin@2026" }),
     });
-
     const text = await response.text();
     const data = JSON.parse(text);
     if (!response.ok) throw new Error(data.error);
@@ -42,40 +41,39 @@ export default function Login({ onLogin }: LoginProps) {
 };
 
   const handleSubmit = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const url = isRegister 
-        ? "http://localhost:3001/api/register" 
-        : "http://localhost:3001/api/login";
-      const body = isRegister
-        ? { email, password, name }
-        : { email, password };
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(body),
-      });
-
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error);
-
-      if (isRegister) {
-        setIsRegister(false);
-        setError("Registration successful! Please login.");
-      } else {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        onLogin(data.user, data.token);
-      }
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+  setLoading(true);
+  setError("");
+  try {
+    const baseUrl = window.location.hostname === "localhost"
+      ? "http://localhost:3001"
+      : "";
+    const url = isRegister 
+      ? `${baseUrl}/api/register` 
+      : `${baseUrl}/api/login`;
+    const body = isRegister ? { email, password, name } : { email, password };
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(body),
+    });
+    const text = await response.text();
+    const data = JSON.parse(text);
+    if (!response.ok) throw new Error(data.error);
+    if (isRegister) {
+      setIsRegister(false);
+      setError("Registration successful! Please login.");
+    } else {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      onLogin(data.user, data.token);
     }
-  };
+  } catch (err: any) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div style={{
